@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "name":"projectzerorn-face-recognition",
+  "license": "ISC",
+  "main": "index.js",
+  "keywords": [
+    "react-native",
+    "face-recognition"]
+}
