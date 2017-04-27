@@ -1,5 +1,7 @@
 package com.fjl.face;
 
+import java.util.List;
+import android.app.Activity;
 import java.io.IOException;
 import Decoder.BASE64Encoder;
 import android.graphics.Bitmap;
@@ -31,7 +33,7 @@ import com.fjl.face.util.FaceEyebrow;
 import com.fjl.face.util.FaceMouth;
 import com.fjl.face.util.FacePosition;
 import com.fjl.face.util.FaceRect;
-import ccom.fjl.face.util.FaceUtil;
+import com.fjl.face.util.FaceUtil;
 import com.fjl.face.util.ParseResult;
 import com.fjl.face.listener.TakePictureListener;
 import com.iflytek.cloud.FaceDetector;
@@ -39,7 +41,7 @@ import com.iflytek.cloud.util.Accelerometer;
 import com.fjl.face.util.StaticArguments;
 import com.fjl.face.util.ImageUtils;
 import com.fjl.face.listener.TakePictureListener;
-
+import com.iflytek.cloud.SpeechUtility;
 
 public class VideoDemo extends Activity {
      private Toast         mToast;
@@ -90,34 +92,16 @@ public class VideoDemo extends Activity {
         initUI();
 
 
-        mAcceler = new Accelerometer(getActivity());
-        mFaceDetector = FaceDetector.createDetector(getActivity(), null);
+        mAcceler = new Accelerometer(this);
+        mFaceDetector = FaceDetector.createDetector(this, null);
         mBASE64Encoder = new BASE64Encoder();
     }
 
-    private Callback mPreviewCallback = new Callback() {
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
-            closeCamera();
-        }
-
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
-            openCamera();
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width,
-                int height) {
-            mScaleMatrix.setScale(width / (float) PREVIEW_HEIGHT, height / (float) PREVIEW_WIDTH);
-        }
-    };
 
    private void setSurfaceSize() {
         
         DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay()
+        this.getWindowManager().getDefaultDisplay()
                 .getMetrics(metrics);
         int width = metrics.widthPixels;
         int height = (int) (width * PREVIEW_WIDTH / (float) PREVIEW_HEIGHT);
@@ -139,11 +123,11 @@ public class VideoDemo extends Activity {
         setSurfaceSize();
         tv_notice = (TextView)findViewById(R.id.tv_fragment_face_notice);
 
-        img_animation = (ImageView) findViewById(R.id.img_fragment_face_anim);
-        img_animation.setImageResource(R.drawable.img_face_open_mouth);
-        AnimationDrawable animationDrawable = (AnimationDrawable) img_animation
-                .getDrawable();
-        animationDrawable.start();
+      //  img_animation = (ImageView) findViewById(R.id.img_fragment_face_anim);
+       // img_animation.setImageResource(R.drawable.img_face_open_mouth);
+      //  AnimationDrawable animationDrawable = (AnimationDrawable) img_animation
+        //        .getDrawable();
+        //animationDrawable.start();
     }
 
     @Override
@@ -401,10 +385,10 @@ public class VideoDemo extends Activity {
                 if (oFlag == 0) {
                     takePicture();
                     oFlag++;
-                    img_animation.setImageResource(R.drawable.img_face_head);
-                    AnimationDrawable animationDrawable = (AnimationDrawable) img_animation
-                            .getDrawable();
-                    animationDrawable.start();
+                   // img_animation.setImageResource(R.drawable.img_face_head);
+                    //AnimationDrawable animationDrawable = (AnimationDrawable) img_animation
+                      //      .getDrawable();
+                    //animationDrawable.start();
                     tv_notice.setText("请向左向右转头...");
                 }
                 break;

@@ -1,9 +1,70 @@
 {
-  "version": "1.0.0",
-  "name":"projectzerorn-face-recognition",
-  "license": "ISC",
-  "main": "index.js",
+  "_args": [
+    [
+      {
+        "hosted": {
+          "directUrl": "https://raw.githubusercontent.com/projectzerorn/projectzerorn-face-recognition/master/package.json",
+          "gitUrl": "git://github.com/projectzerorn/projectzerorn-face-recognition.git",
+          "httpsUrl": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+          "shortcut": "github:projectzerorn/projectzerorn-face-recognition",
+          "ssh": "git@github.com:projectzerorn/projectzerorn-face-recognition.git",
+          "sshUrl": "git+ssh://git@github.com/projectzerorn/projectzerorn-face-recognition.git",
+          "type": "github"
+        },
+        "name": null,
+        "raw": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+        "rawSpec": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+        "scope": null,
+        "spec": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+        "type": "hosted"
+      },
+      "/Users/liumeng/Documents/parttime/fjl"
+    ]
+  ],
+  "_from": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+  "_id": "projectzerorn-face-recognition@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/projectzerorn-face-recognition",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/projectzerorn/projectzerorn-face-recognition/master/package.json",
+      "gitUrl": "git://github.com/projectzerorn/projectzerorn-face-recognition.git",
+      "httpsUrl": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+      "shortcut": "github:projectzerorn/projectzerorn-face-recognition",
+      "ssh": "git@github.com:projectzerorn/projectzerorn-face-recognition.git",
+      "sshUrl": "git+ssh://git@github.com/projectzerorn/projectzerorn-face-recognition.git",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+    "rawSpec": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+    "scope": null,
+    "spec": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+    "type": "hosted"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git#746eabde5a238fd0be4f38908ce006c0688aeb30",
+  "_shasum": "da60550b1f0ceb0d5502a13c67b135f348aedc53",
+  "_shrinkwrap": null,
+  "_spec": "git+https://github.com/projectzerorn/projectzerorn-face-recognition.git",
+  "_where": "/Users/liumeng/Documents/parttime/fjl",
+  "dependencies": {},
+  "description": "",
+  "devDependencies": {},
+  "gitHead": "746eabde5a238fd0be4f38908ce006c0688aeb30",
   "keywords": [
     "react-native",
-    "face-recognition"]
+    "face-recognition"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "projectzerorn-face-recognition",
+  "optionalDependencies": {},
+  "readme": "# projectzerorn-face-recognition",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
 }
