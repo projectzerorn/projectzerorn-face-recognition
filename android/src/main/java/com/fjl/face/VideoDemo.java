@@ -1,8 +1,11 @@
 package com.fjl.face;
 
 import java.util.List;
+
 import android.app.Activity;
+
 import java.io.IOException;
+
 import Decoder.BASE64Encoder;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -44,25 +47,25 @@ import com.fjl.face.listener.TakePictureListener;
 import com.iflytek.cloud.SpeechUtility;
 
 public class VideoDemo extends Activity {
-     private Toast         mToast;
+    private Toast mToast;
     // Camera nv21格式预览帧的尺寸，默认设置640*480
     private int PREVIEW_WIDTH  = 640;
     private int PREVIEW_HEIGHT = 480;
     // 预览帧数据存储数组和缓存数组
-    private byte[] nv21;
-    private byte[] buffer;
+    private byte[]        nv21;
+    private byte[]        buffer;
     // FaceDetector对象，集成了离线人脸识别：人脸检测、视频流检测功能
-    private FaceDetector mFaceDetector;
-    private Canvas mCanvas;
+    private FaceDetector  mFaceDetector;
+    private Canvas        mCanvas;
     // 加速度感应器，用于获取手机的朝向
     private Accelerometer mAcceler;
-    private boolean mStopTrack;
+    private boolean       mStopTrack;
     // 是否显示聚焦点 0不显示 1显示
-    private int isAlign = 1;
-    protected int mCameraId = CameraInfo.CAMERA_FACING_FRONT;
-    private boolean isOpenMouth = false;
-    private boolean isShakeHead = false;
-    private TextView tv_notice;
+    private   int     isAlign     = 1;
+    protected int     mCameraId   = CameraInfo.CAMERA_FACING_FRONT;
+    private   boolean isOpenMouth = false;
+    private   boolean isShakeHead = false;
+    private TextView  tv_notice;
     private ImageView img_animation;
     private CameraSurfaceView mPreviewSurface = null;
     private SurfaceView mFaceSurface;
@@ -72,12 +75,12 @@ public class VideoDemo extends Activity {
     /**
      * 摇头拍照
      */
-    int iFlag = 0;
+    int iFlag           = 0;
     /**
      * 张嘴拍照
      */
-    int oFlag = 0;
-    int countHead = 0;// 向左向右摇头计数
+    int oFlag           = 0;
+    int countHead       = 0;// 向左向右摇头计数
     /**
      * 拍照的次数
      */
@@ -91,15 +94,13 @@ public class VideoDemo extends Activity {
         SpeechUtility.createUtility(VideoDemo.this, "appid=58ac00ad");
         initUI();
 
-
         mAcceler = new Accelerometer(this);
         mFaceDetector = FaceDetector.createDetector(this, null);
         mBASE64Encoder = new BASE64Encoder();
     }
 
+    private void setSurfaceSize() {
 
-   private void setSurfaceSize() {
-        
         DisplayMetrics metrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay()
                 .getMetrics(metrics);
@@ -115,17 +116,17 @@ public class VideoDemo extends Activity {
         mToast = Toast.makeText(VideoDemo.this, "", Toast.LENGTH_SHORT);
 
         mPreviewSurface = (CameraSurfaceView) findViewById(R.id.surface_fragment_face_preview);
-        mFaceSurface = (SurfaceView)findViewById(R.id.surface_fragment_face_face);
+        mFaceSurface = (SurfaceView) findViewById(R.id.surface_fragment_face_face);
         //mFaceSurface置于窗口的最顶层
         mFaceSurface.setZOrderOnTop(true);
         mFaceSurface.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         //设置预览界面的尺寸
         setSurfaceSize();
-        tv_notice = (TextView)findViewById(R.id.tv_fragment_face_notice);
+        tv_notice = (TextView) findViewById(R.id.tv_fragment_face_notice);
 
-      //  img_animation = (ImageView) findViewById(R.id.img_fragment_face_anim);
-       // img_animation.setImageResource(R.drawable.img_face_open_mouth);
-      //  AnimationDrawable animationDrawable = (AnimationDrawable) img_animation
+        //  img_animation = (ImageView) findViewById(R.id.img_fragment_face_anim);
+        // img_animation.setImageResource(R.drawable.img_face_open_mouth);
+        //  AnimationDrawable animationDrawable = (AnimationDrawable) img_animation
         //        .getDrawable();
         //animationDrawable.start();
     }
@@ -161,6 +162,7 @@ public class VideoDemo extends Activity {
         }
         mStopTrack = true;
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -170,6 +172,7 @@ public class VideoDemo extends Activity {
         mFaceDetector.destroy();
 
     }
+
     /**
      * 人脸检测
      */
@@ -214,9 +217,10 @@ public class VideoDemo extends Activity {
 
                 }
             }
+
             /**
              * 绘制人脸框，并进行活体检测
-             * 
+             *
              * @param frontCamera
              * @param faces
              */
@@ -248,19 +252,19 @@ public class VideoDemo extends Activity {
 
                 if (null != faces
                         && frontCamera == (Camera.CameraInfo.CAMERA_FACING_FRONT == mCameraId)) {
-                    for (FaceRect face : faces) {
-                        face.bound = FaceUtil.RotateDeg90(face.bound,
-                                PREVIEW_WIDTH, PREVIEW_HEIGHT);
-                        if (face.point != null) {
-                            for (int i = 0; i < face.point.length; i++) {
-                                face.point[i] = FaceUtil.RotateDeg90(
-                                        face.point[i], PREVIEW_WIDTH,
-                                        PREVIEW_HEIGHT);
-                            }
-                        }
-                        FaceUtil.drawFaceRect(mCanvas, face, PREVIEW_WIDTH,
-                                PREVIEW_HEIGHT, frontCamera, false);
-                    }
+//                    for (FaceRect face : faces) {
+//                        face.bound = FaceUtil.RotateDeg90(face.bound,
+//                                PREVIEW_WIDTH, PREVIEW_HEIGHT);
+//                        if (face.point != null) {
+//                            for (int i = 0; i < face.point.length; i++) {
+//                                face.point[i] = FaceUtil.RotateDeg90(
+//                                        face.point[i], PREVIEW_WIDTH,
+//                                        PREVIEW_HEIGHT);
+//                            }
+//                        }
+//                        FaceUtil.drawFaceRect(mCanvas, face, PREVIEW_WIDTH,
+//                                PREVIEW_HEIGHT, frontCamera, false);
+//                    }
                     isFace = true;
                 } else {
                     // Log.d(TAG, "faces:0");
@@ -372,11 +376,11 @@ public class VideoDemo extends Activity {
             case StaticArguments.FACE_HAS_TAKE_PPICTURE:
                 if (takePictureFlag == 0) {
                     takePictureFlag++;
-                    showTip("将张嘴拍照上传到指定的路径");
+                    // showTip("将张嘴拍照上传到指定的路径");
                     //上传人脸识别的照片
                     upLoadFace((String) msg.obj, 21);
                 } else if (takePictureFlag == 1) {
-                    showTip("将摇头拍照上传到指定的路径");
+                    //showTip("将摇头拍照上传到指定的路径");
                     upLoadFace((String) msg.obj, 22);
                 }
                 break;
@@ -385,9 +389,9 @@ public class VideoDemo extends Activity {
                 if (oFlag == 0) {
                     takePicture();
                     oFlag++;
-                   // img_animation.setImageResource(R.drawable.img_face_head);
+                    // img_animation.setImageResource(R.drawable.img_face_head);
                     //AnimationDrawable animationDrawable = (AnimationDrawable) img_animation
-                      //      .getDrawable();
+                    //      .getDrawable();
                     //animationDrawable.start();
                     tv_notice.setText("请向左向右转头...");
                 }
@@ -413,7 +417,7 @@ public class VideoDemo extends Activity {
         }
     };
 
-   /**
+    /**
      * 拍照
      */
     private void takePicture() {
@@ -422,9 +426,11 @@ public class VideoDemo extends Activity {
     }
 
     public void upLoadFace(String file_image_String, int flag) {
-        if (flag == 22) {
-            showTip("检测到左右摇头,完成人脸识别");
-        }
+        //        if (flag == 22) {
+        //            showTip("检测到左右摇头,完成人脸识别");
+        //        }
+        showTip("检测活体完成");
+        finish();
 
     }
 
@@ -434,10 +440,9 @@ public class VideoDemo extends Activity {
         return bitMapStr;
     }
 
-      private void showTip(final String str) {
+    private void showTip(final String str) {
         mToast.setText(str);
         mToast.show();
     }
-
 
 }
