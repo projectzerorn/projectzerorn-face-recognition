@@ -45,7 +45,9 @@ import com.fjl.face.util.StaticArguments;
 import com.fjl.face.util.ImageUtils;
 import com.fjl.face.listener.TakePictureListener;
 import com.iflytek.cloud.SpeechUtility;
-
+import android.util.Log;
+import android.content.Intent;
+import android.os.Bundle;
 public class VideoDemo extends Activity {
     private Toast mToast;
     // Camera nv21格式预览帧的尺寸，默认设置640*480
@@ -252,19 +254,19 @@ public class VideoDemo extends Activity {
 
                 if (null != faces
                         && frontCamera == (Camera.CameraInfo.CAMERA_FACING_FRONT == mCameraId)) {
-//                    for (FaceRect face : faces) {
-//                        face.bound = FaceUtil.RotateDeg90(face.bound,
-//                                PREVIEW_WIDTH, PREVIEW_HEIGHT);
-//                        if (face.point != null) {
-//                            for (int i = 0; i < face.point.length; i++) {
-//                                face.point[i] = FaceUtil.RotateDeg90(
-//                                        face.point[i], PREVIEW_WIDTH,
-//                                        PREVIEW_HEIGHT);
-//                            }
-//                        }
-//                        FaceUtil.drawFaceRect(mCanvas, face, PREVIEW_WIDTH,
-//                                PREVIEW_HEIGHT, frontCamera, false);
-//                    }
+                    //                    for (FaceRect face : faces) {
+                    //                        face.bound = FaceUtil.RotateDeg90(face.bound,
+                    //                                PREVIEW_WIDTH, PREVIEW_HEIGHT);
+                    //                        if (face.point != null) {
+                    //                            for (int i = 0; i < face.point.length; i++) {
+                    //                                face.point[i] = FaceUtil.RotateDeg90(
+                    //                                        face.point[i], PREVIEW_WIDTH,
+                    //                                        PREVIEW_HEIGHT);
+                    //                            }
+                    //                        }
+                    //                        FaceUtil.drawFaceRect(mCanvas, face, PREVIEW_WIDTH,
+                    //                                PREVIEW_HEIGHT, frontCamera, false);
+                    //                    }
                     isFace = true;
                 } else {
                     // Log.d(TAG, "faces:0");
@@ -429,13 +431,17 @@ public class VideoDemo extends Activity {
         //        if (flag == 22) {
         //            showTip("检测到左右摇头,完成人脸识别");
         //        }
-        showTip("检测活体完成");
+       // showTip("检测活体完成");
+        Intent intent = new Intent();
+        intent.putExtra("ImageKey",file_image_String);
+        setResult(RESULT_OK, intent);
         finish();
 
     }
 
     private String getImage(Bitmap bitmap) {
         byte[] file_image_bytes = ImageUtils.bitmapToByte(bitmap);
+        Log.e("dale", "imgeSize-->" + file_image_bytes.length / 1024 + "kb");
         String bitMapStr = mBASE64Encoder.encodeBuffer(file_image_bytes);
         return bitMapStr;
     }

@@ -11,12 +11,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class FaceReactPackage implements ReactPackage {
-
+    public FaceNativeModule mFaceNativeModule;
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<NativeModule>();
+        mFaceNativeModule = new FaceNativeModule(reactContext);
         //初始化modules
-        modules.add(new FaceNativeModule(reactContext));
+        modules.add(mFaceNativeModule);
         return modules;
     }
 
