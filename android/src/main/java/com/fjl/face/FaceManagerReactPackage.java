@@ -10,16 +10,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FaceReactPackage implements ReactPackage {
-    public RecoFaceViewModule mFaceNativeModule;
+import android.app.Activity;
+
+public class FaceManagerReactPackage implements ReactPackage {
+    private Activity mActivity;
+
+    public FaceManagerReactPackage(Activity activity) {
+        mActivity = activity;
+    }
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        List<NativeModule> modules = new ArrayList<NativeModule>();
-        mFaceNativeModule = new RecoFaceViewModule(reactContext);
-        //初始化modules
-        modules.add(mFaceNativeModule);
-        return modules;
+        return Collections.emptyList();
     }
 
     @Override
@@ -29,6 +31,6 @@ public class FaceReactPackage implements ReactPackage {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        return Arrays.<ViewManager>asList(new RecoFaceViewManager(mActivity));
     }
 }

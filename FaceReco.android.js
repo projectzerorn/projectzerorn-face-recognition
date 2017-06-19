@@ -1,10 +1,22 @@
-import {
-    NativeModules
-} from 'react-native';
+import React,{Component,PropTypes} from 'react';
+import{ requireNativeComponent, View, Platform } from 'react-native';
 const FaceRecoNative = NativeModules.FaceNativeModule;
-export default class FaceReco {
-    static startFaceReco() {
-        FaceRecoNative.startFaceRecognition();
+if (Platform.OS === 'ios') {
+
+} else {
+    var LibFaceRecoView = requireNativeComponent('RCTRecoFaceView', FaceRecoView);
+}
+
+class FaceRecoView extends Component {
+    constructor(props) {
+        super(props);
     }
 
+    render() {
+
+        return (
+            <LibFaceRecoView {...this.props}/>
+        );
+    }
 }
+export default FaceRecoView;
